@@ -1,12 +1,14 @@
-import Navbar from "@/Components/Layout/Navbar";
-import { Grid } from "@mui/material";
 
+import React from "react";
+import { Box } from "@mui/material";
+import DashboardPage from "@/Components/Dashboard/Reviews/Dashboard/Dashboard";
 
-export default function DashboardPage() {
+const Dashboard: React.FC = () => {
   return (
-    <Grid container spacing={2}>
-     
-      {/* Add other widgets here */}
-    </Grid>
+    <Box>
+      <DashboardPage/>
+    </Box>
   );
-}
+};
+
+export default Dashboard;
