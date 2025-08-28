@@ -21,7 +21,7 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 
 const menuItems = [
     { text: "Dashboard", icon: <Icon icon="material-symbols:monitoring" width="24" height="24" />, path: "/dashboard" },
-    { text: "Promote Your Tool", icon: <CampaignIcon />, path: "/promote" },
+    { text: "Promote Your Tool", icon: <CampaignIcon />, path: "/boost-visibility" },
     { text: "Reviews", icon: <RateReviewIcon />, path: "/reviews" },
     { text: "Analytics", icon: <AssessmentIcon />, path: "/analytics" },
     { text: "Notifications", icon: <NotificationsIcon />, path: "/notifications" },

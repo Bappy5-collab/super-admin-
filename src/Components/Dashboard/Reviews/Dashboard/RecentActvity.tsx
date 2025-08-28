@@ -34,13 +34,15 @@ const RecentActivity: React.FC = () => (
           <Box>
             <Typography
               variant="body2"
-              sx={{ color: activity.color, fontWeight: 500 }}
+              sx={{ fontWeight: 500 }}
             >
               {activity.text}
             </Typography>
-            <Typography variant="caption" color="textSecondary">
+            <Box>
+              <Typography variant="caption" color="textSecondary">
               {activity.time}
             </Typography>
+            </Box>
           </Box>
         </Box>
       ))}
