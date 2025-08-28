@@ -7,11 +7,14 @@ export default function Navbar() {
 
   return (
     <Box sx={{ mb: 3 }}>
-      <Typography variant="h5" sx={{ fontWeight: "bold", textTransform: "capitalize" }}>
+      <Typography
+        variant="h5"
+        sx={{ fontWeight: "bold", textTransform: "capitalize" }}
+      >
         {pageTitle}
       </Typography>
       <Typography variant="body2" color="textSecondary">
-        Welcome back! Here's what's happening with your AI tool.
+        Welcome back! Here&apos;s what&apos;s happening with your AI tool.
       </Typography>
     </Box>
   );
