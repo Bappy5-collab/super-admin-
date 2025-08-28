@@ -11,8 +11,12 @@ const metrics = [
 
 const PromotionPerformance: React.FC = () => {
     return (
-        <Paper elevation={0} sx={{ p: 3,mt:2 }}>
-            <Typography sx={{ mb: 3, fontSize:"18px",fontWeight:'600',lineHeight:'100%', }}>Promotion Performance</Typography>
+        <Paper elevation={0}
+            sx={{
+                p: 3,
+                boxShadow: "0px 4px 6px 0px rgba(0, 0, 0, 0.1)", // x=0, y=4, blur=6, spread=0
+            }}>
+            <Typography sx={{ mb: 3, fontSize: "18px", fontWeight: '600', lineHeight: '100%', }}>Promotion Performance</Typography>
             <Grid container spacing={3} textAlign="center">
 
                 {metrics.map((metric, i) => (
