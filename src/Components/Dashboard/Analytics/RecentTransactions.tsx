@@ -10,6 +10,7 @@ import {
     Avatar,
     Chip,
     Box,
+    Button,
 } from "@mui/material";
 
 const RecentTransactions = () => {
@@ -22,9 +23,14 @@ const RecentTransactions = () => {
 
     return (
         <Paper sx={{ p: 2, borderRadius: 3 }}>
-            <Typography sx={{ fontWeight: 600, fontSize: "18px", mb: 3 }}>
-                Recent Transactions
-            </Typography>
+            <Box display="flex" alignItems="center" justifyContent="space-between" mb={3}>
+                <Typography sx={{ fontWeight: 600, fontSize: "18px" }}>
+                    Recent Transactions
+                </Typography>
+                <Button sx={{ textTransform: 'none', fontSize: '14px', fontWeight: '500', color: '#00B6D3', lineHeight: '100%' }} >
+                    View all
+                </Button>
+            </Box>
             <Table>
                 <TableHead>
                     <TableRow>

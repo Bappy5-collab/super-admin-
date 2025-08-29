@@ -26,7 +26,10 @@ const StatCard: React.FC<StatCardProps> = ({
     iconBg,
 }) => {
     return (
-        <Paper elevation={1} sx={{ p: 2, borderRadius: 3,mb:3,   boxShadow: "0px 4px 6px 0px rgba(0, 0, 0, 0.1)", }}>
+        <Paper elevation={1} sx={{
+            p: 2, borderRadius: 3, mb: 3,
+            boxShadow: "0px 4px 6px 0px rgba(0, 0, 0, 0.1)",
+        }}>
             <Box display="flex" alignItems="center" gap={2}>
                 <Box>
                     <Typography variant="subtitle2" color="text.secondary">
@@ -81,7 +84,7 @@ const StatsCards = () => {
                     change="+18.2% vs last month"
                     isPositive={true}
                     icon={<AttachMoneyIcon sx={{ color: "#16A34A" }} />}
-                    iconBg="#DCFCE7" // light green
+                    iconBg="#DCFCE7"
                 />
             </Grid>
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -91,7 +94,7 @@ const StatsCards = () => {
                     change="+12.5% vs last month"
                     isPositive={true}
                     icon={<BarChartIcon sx={{ color: "#2563EB" }} />}
-                    iconBg="#DBEAFE" // light blue
+                    iconBg="#DBEAFE"
                 />
             </Grid>
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -101,7 +104,7 @@ const StatsCards = () => {
                     change="-3.2% vs last month"
                     isPositive={false}
                     icon={<HelpOutlineIcon sx={{ color: "#D97706" }} />}
-                    iconBg="#FEF3C7" // light amber
+                    iconBg="#FEF3C7"
                 />
             </Grid>
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -111,7 +114,7 @@ const StatsCards = () => {
                     change="+24.1% vs last month"
                     isPositive={true}
                     icon={<ReceiptLongIcon sx={{ color: "#4F46E5" }} />}
-                    iconBg="#E0E7FF" // light indigo
+                    iconBg="#E0E7FF"
                 />
             </Grid>
         </Grid>
