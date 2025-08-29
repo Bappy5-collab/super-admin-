@@ -22,8 +22,9 @@ export default function CurrentPlan() {
             Current Plan
           </Typography>
           <Typography sx={{ fontSize: "16px", fontWeight: "400", lineHeight: "24px", color: "#4B5563" }}>
-            You're currently on the Pro plan
+            You&apos;re currently on the Pro plan
           </Typography>
+
         </Box>
         <Box
           sx={{
@@ -118,12 +119,12 @@ export default function CurrentPlan() {
           borderRadius: 2,
           fontSize: 13,
           fontWeight: 500,
-          border:'1px solid #FEF08A'
+          border: '1px solid #FEF08A'
         }}
       >
         <Stack direction="row" alignItems="center" spacing={1}>
           <WarningAmberIcon sx={{ fontSize: 16 }} />
-          <Typography sx={{fontSize:'14px',fontWeight:"400",lineHeight:'20px'}}>
+          <Typography sx={{ fontSize: '14px', fontWeight: "400", lineHeight: '20px' }}>
             Your next billing date is{" "}
             <Typography
               component="span"
