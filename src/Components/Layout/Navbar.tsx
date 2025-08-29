@@ -7,11 +7,21 @@ export default function Navbar() {
   const pageName = router.pathname.replace("/", "") || "dashboard";
 
   const pageTitle =
-    pageName === "reviews" ? "Reviews & Feedback" : pageName.charAt(0).toUpperCase() + pageName.slice(1);
+    pageName === "reviews"
+      ? "Reviews & Feedback"
+      : pageName === "analytics"
+      ? "Financial Analytics"
+      : pageName.charAt(0).toUpperCase() + pageName.slice(1);
 
   return (
     <Box sx={{ mb: 3, mt: 3, px: 2 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Typography
           sx={{
             mb: "10px",
@@ -34,9 +44,9 @@ export default function Navbar() {
               color: "#374151",
               textTransform: "none",
               borderRadius: "8px",
-              boxShadow:'none',
+              boxShadow: "none",
               px: 3,
-              "&:hover": { bgcolor: "#E5E7EB" }, 
+              "&:hover": { bgcolor: "#E5E7EB" },
             }}
           >
             Export
