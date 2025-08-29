@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Divider, Box } from "@mui/material";
+import { Card,  Typography, Divider, Box } from "@mui/material";
 
 const activities = [
   { text: "New user signed up for trial", time: "2 hours ago", color: "#22C55E" },

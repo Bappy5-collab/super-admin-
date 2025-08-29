@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Divider, List, ListItemButton, ListItemText, Box } from "@mui/material";
+import { Card, CardContent, Typography,  List, ListItemButton, ListItemText, Box } from "@mui/material";
 import { Settings, Edit, Upload } from "@mui/icons-material";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 

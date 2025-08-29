@@ -1,6 +1,6 @@
 // src/components/ActivePromotion.tsx
 import React from "react";
-import { Box, Typography, Button, Stack, Paper } from "@mui/material";
+import {  Typography, Button, Stack, Paper } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const ActivePromotion: React.FC = () => {

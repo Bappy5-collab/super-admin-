@@ -1,6 +1,6 @@
 // pages/index.tsx
 import React from "react";
-import { Box, Container } from "@mui/material";
+import {  Container } from "@mui/material";
 import AnalyticPage from "@/Components/Dashboard/Analytics/AnalyticPage";
 
 

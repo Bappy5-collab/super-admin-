@@ -1,6 +1,6 @@
 // src/components/CallToAction.tsx
 import React from "react";
-import { Box, Typography, Button, Stack, Paper } from "@mui/material";
+import {  Typography, Button, Stack, Paper } from "@mui/material";
 
 const CallToAction: React.FC = () => {
     return (

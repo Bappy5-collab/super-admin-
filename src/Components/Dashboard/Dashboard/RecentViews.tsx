@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Divider, Box, Button, Avatar } from "@mui/material";
+import { Card, CardContent, Typography,  Box, Button, Avatar } from "@mui/material";
 import StarRateIcon from '@mui/icons-material/StarRate';
 const reviews = [
   { name: "Sarah Chen", text: "Amazing tool! Really helped streamline our workflow.", rating: 5 },

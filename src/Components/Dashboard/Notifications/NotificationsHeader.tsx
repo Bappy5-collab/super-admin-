@@ -5,11 +5,12 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import UpdateIcon from "@mui/icons-material/SystemUpdate";
 
+
 interface StatCardProps {
   label: string;
   value: number;
   color: string;               
-  icon: React.ElementType<any>; 
+  icon: React.ElementType; 
   iconColor?: string;          
   iconSize?: number;           
 }

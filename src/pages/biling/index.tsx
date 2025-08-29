@@ -1,15 +1,16 @@
 // pages/index.tsx
 import React from "react";
 import {  Container } from "@mui/material";
-import Reviews from "@/Components/Dashboard/Reviews/ReviewsPage";
+
+import BillingPage from "@/Components/Dashboard/Billing/BillingPage";
 
 
-const ReviewsPage: React.FC = () => {
+const Biling: React.FC = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Reviews />
+      <BillingPage/>
     </Container>
   );
 };
 
-export default ReviewsPage;
+export default Biling;

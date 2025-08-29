@@ -1,6 +1,6 @@
 // src/pages/PromotionPage.tsx
 import React from "react";
-import { Container, Box, Stack } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import ActivePromotion from "./ActivePromotion";
 import PricingPlans from "./PricingPlans";
 import PromotionPerformance from "./Performance";

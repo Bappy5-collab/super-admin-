@@ -8,7 +8,6 @@ import {
     Typography,
     ListItemButton,
 } from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import RateReviewIcon from "@mui/icons-material/RateReview";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PaymentIcon from "@mui/icons-material/Payment";
@@ -25,7 +24,7 @@ const menuItems = [
     { text: "Reviews", icon: <RateReviewIcon />, path: "/reviews" },
     { text: "Analytics", icon: <AssessmentIcon />, path: "/analytics" },
     { text: "Notifications", icon: <NotificationsIcon />, path: "/notifications" },
-    { text: "Billing", icon: <PaymentIcon />, path: "/billing" },
+    { text: "Billing", icon: <PaymentIcon />, path: "/biling" },
     { text: "Support", icon: <SupportIcon />, path: "/support" },
 ];
 
