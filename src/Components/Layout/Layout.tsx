@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <Box sx={{ display: "flex" }}>
       <Sidebar />
-      <Box sx={{ flexGrow: 1, bgcolor: "#f9fafb", minHeight: "100vh", p: 3 }}>
+      <Box sx={{ flexGrow: 1, bgcolor: "#f9fafb", minHeight: "100vh", p: 2 }}>
         <Navbar />
         {children}
       </Box>
