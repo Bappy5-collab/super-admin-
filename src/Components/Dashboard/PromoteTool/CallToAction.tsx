@@ -24,14 +24,13 @@ const CallToAction: React.FC = () => {
                     variant="contained"
                     sx={{
                         boxShadow: "none",
-                        bgcolor: "#E5E7EB", // white background
-                        color: "#4F46E5",  // text color
-                        textTransform: "none", // no uppercase
-                        height: 50, // increased height
-                        borderRadius: 2, // 8px rounded corners
-
+                        bgcolor: "#E5E7EB",
+                        color: "#4F46E5",
+                        textTransform: "none",
+                        height: 50,
+                        borderRadius: 2,
                         "&:hover": {
-                            bgcolor: "#F3F4F6", // light hover background
+                            bgcolor: "#F3F4F6",
                         },
                     }}
                 >
@@ -41,23 +40,21 @@ const CallToAction: React.FC = () => {
                 <Button
                     variant="outlined"
                     sx={{
-                        bgcolor: "#4F46E533", // semi-transparent purple background
-                        color: "#FFFFFF", // text color
-                        borderColor: "#FFFFFF4D", // 30% opacity white border
-                        textTransform: "none", // keep original casing
-                        height: 50, // increased height
-                        borderRadius: 2, // 8px rounded corners
+                        bgcolor: "#4F46E533",
+                        color: "#FFFFFF",
+                        borderColor: "#FFFFFF4D",
+                        textTransform: "none",
+                        height: 50,
+                        borderRadius: 2,
                         fontWeight: 600,
                         "&:hover": {
-                            bgcolor: "#4F46E5", // solid purple on hover
+                            bgcolor: "#4F46E5",
                             borderColor: "#4F46E5",
                         },
                     }}
                 >
                     Contact Sales
                 </Button>
-
-
             </Stack>
         </Paper>
     );
