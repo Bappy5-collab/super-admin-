@@ -17,10 +17,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Icon } from "@iconify/react";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import AddIcon from "@mui/icons-material/Add"; 
 
 const menuItems = [
     { text: "Dashboard", icon: <Icon icon="material-symbols:monitoring" width="24" height="24" />, path: "/dashboard" },
     { text: "Promote Your Tool", icon: <CampaignIcon />, path: "/boost-visibility" },
+    { text: "Add Product", icon: <AddIcon />, path: "/add-product" },
     { text: "Reviews", icon: <RateReviewIcon />, path: "/reviews" },
     { text: "Analytics", icon: <AssessmentIcon />, path: "/analytics" },
     { text: "Notifications", icon: <NotificationsIcon />, path: "/notifications" },

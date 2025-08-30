@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, Typography, Box, Stack } from "@mui/material";
+import { Card, Typography, Box } from "@mui/material";
 
 export default function RevenueAnalytics() {
   return (
-    <Card sx={{ p: 3, flex: 1 }}>
+    <Card sx={{ p: 3, flex: 1,minHeight: '409px' }}>
       <Typography variant="subtitle1" fontWeight={600}>
         Revenue Analytics
       </Typography>
@@ -21,38 +21,52 @@ export default function RevenueAnalytics() {
             mb: 2,
           }}
         >
-          Total Revenue (YTD): $34,080
+          <Typography>
+            Total Revenue (YTD)
+          </Typography>
+          <Typography>
+            $34,080
+          </Typography>
         </Box>
 
-        <Stack spacing={1}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            gap: 4,
+
+          }}>
           <Box
             sx={{
-              bgcolor: "#EFF6FF",
               px: 2,
               py: 1,
-              borderRadius: 2,
-              display: "flex",
-              justifyContent: "space-between",
+              width: '100%',
+              backgroundColor: "#EFF6FF",
+              borderRadius: '8px'
+
             }}
           >
-            <Typography>This Month</Typography>
-            <Typography fontWeight={600}>$2,840</Typography>
+            <Typography sx={{fontSize:'14px',fontWeight:'400',lineHeight:'100%',color:'#1D4ED8',mb:1}}>This Month</Typography>
+            <Typography sx={{fontSize:'20px',fontWeight:'700',lineHeight:'100%',color:'#1E40AF',mb:1}}>$2,840</Typography>
+            <Typography sx={{fontSize:'12px',fontWeight:'400',lineHeight:'100%',color:'#16A34A',mb:1}}>+24% vs last month</Typography>
           </Box>
 
           <Box
             sx={{
-              bgcolor: "#EEF2FF",
               px: 2,
               py: 1,
-              borderRadius: 2,
-              display: "flex",
-              justifyContent: "space-between",
+              width: '100%',
+              backgroundColor: "#FAF5FF",
+              borderRadius: '8px'
+
             }}
           >
-            <Typography>Avg. Monthly</Typography>
-            <Typography fontWeight={600}>$2,840</Typography>
+           <Typography sx={{fontSize:'14px',fontWeight:'400',lineHeight:'100%',color:'#7E22CE',mb:1}}>Avg. Monthly</Typography>
+            <Typography sx={{fontSize:'20px',fontWeight:'700',lineHeight:'100%',color:'#6B21A8',mb:1}}>$2,840</Typography>
+            <Typography sx={{fontSize:'12px',fontWeight:'400',lineHeight:'100%',color:'#16A34A',mb:1}}>+24% vs last year</Typography>
           </Box>
-        </Stack>
+
+        </Box>
       </Box>
     </Card>
   );

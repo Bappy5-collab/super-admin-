@@ -18,13 +18,30 @@ export default function BillingSettings() {
           defaultValue="123 Tech Street\nSan Francisco, CA 94105\nUnited States"
         />
 
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Switch defaultChecked />
-          <Typography variant="body2">Auto-renew subscription</Typography>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <Box>
+             <Typography sx={{fontSize:"16px",fontWeight:"500",lineHeight:'24px',color:"#111827"}}>Auto-renew subscription</Typography>
+          <Typography sx={{fontSize:"14px",fontWeight:"400",lineHeight:'24px',color:"#4B5563"}}>Automatically renew your plan each month</Typography>
+          </Box>
+          <Switch
+            defaultChecked
+            sx={{
+              "& .MuiSwitch-switchBase.Mui-checked": {
+                color: "#fff",
+                "& + .MuiSwitch-track": {
+                  backgroundColor: "#00B6D3",
+                },
+              },
+              "& .MuiSwitch-track": {
+                borderRadius: "20px",
+              },
+            }}
+          />
+         
         </Stack>
 
         <Box>
-          <Button variant="contained">Save Settings</Button>
+          <Button sx={{ bgcolor: '#00B6D3', color: '#FFFFFF', borderRadius: '8px', width: '100%' }}>Save Settings</Button>
         </Box>
       </Stack>
     </Card>
