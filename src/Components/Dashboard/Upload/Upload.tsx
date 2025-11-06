@@ -48,6 +48,7 @@ const Upload: React.FC = () => {
     message: '',
     severity: 'success' as 'success' | 'error' | 'info' | 'warning',
   });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -93,83 +94,85 @@ const Upload: React.FC = () => {
   const removeQuizQuestion = (id: string) => {
     setQuizQuestions((prev) => prev.filter((q) => q.id !== id));
   };
-  const handleSubmit = async () => {
-    if (!formData.title.trim()) {
-      setSnackbar({
-        open: true,
-        message: "Please enter a title",
-        severity: "error",
-      });
-      return;
+
+
+const handleSubmit = async () => {
+  // Validation
+  if (!formData.title.trim()) {
+    setSnackbar({
+      open: true,
+      message: 'Please enter a title',
+      severity: 'error',
+    });
+    return;
+  }
+
+  setLoading(true);
+  setUploadProgress(0);
+
+  try {
+    // Create FormData to send data
+    const uploadFormData = new FormData();
+    uploadFormData.append('title', formData.title);
+    uploadFormData.append('description', formData.description);
+    uploadFormData.append('date', formData.date);
+
+    // Add quiz questions as JSON string
+    if (quizQuestions.length > 0 && quizQuestions.some(q => q.question.trim())) {
+      uploadFormData.append('quizQuestions', JSON.stringify(quizQuestions));
     }
 
-    setLoading(true);
-    setUploadProgress(0);
+    // Append video if selected
+    if (selectedFile) {
+      uploadFormData.append('video', selectedFile);
+    }
 
-    try {
-      // Prepare form data
-      const uploadFormData = new FormData();
-      uploadFormData.append("title", formData.title);
-      uploadFormData.append("description", formData.description);
-      uploadFormData.append("date", formData.date);
-
-      if (
-        quizQuestions.length > 0 &&
-        quizQuestions.some((q) => q.question.trim())
-      ) {
-        uploadFormData.append("quizQuestions", JSON.stringify(quizQuestions));
-      }
-
-      console.log("📦 Upload Payload:", uploadFormData);
-
-      // Axios POST request (same pattern as handlePublish)
-      const response = await axios.post(
-        "https://hire-gpt-backend.vercel.app/api/videos/upload",
-        uploadFormData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            if (progressEvent.total) {
-              const percent = Math.round(
-                (progressEvent.loaded * 100) / progressEvent.total
-              );
-              setUploadProgress(percent);
-            }
-          },
+    // Axios POST with progress
+    const response = await axios.post('http://localhost:5000/api/videos/upload', uploadFormData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+      onUploadProgress: (progressEvent) => {
+        if (progressEvent.total) {
+          const percentComplete = (progressEvent.loaded / progressEvent.total) * 100;
+          setUploadProgress(percentComplete);
         }
-      );
+      },
+    });
 
-      console.log("✅ Upload successful:", response.data);
+    // Success
+    setSnackbar({
+      open: true,
+      message: 'Content uploaded successfully!',
+      severity: 'success',
+    });
 
-      setSnackbar({
-        open: true,
-        message: "Content uploaded successfully!",
-        severity: "success",
-      });
-
-      // Reset form
-      setFormData({ title: "", description: "", date: "" });
-      setQuizQuestions([
-        { id: "1", question: "", options: ["", "", "", ""], correctAnswer: 0 },
-      ]);
-      setUploadProgress(0);
-    } catch (error: any) {
-      console.error("❌ Upload error:", error);
-      const message =
-        error.response?.data?.message ||
-        "Upload failed. Please check your network or try again.";
-
-      setSnackbar({
-        open: true,
-        message,
-        severity: "error",
-      });
-    } finally {
-      setLoading(false);
+    // Reset form
+    setFormData({ title: '', description: '', date: '' });
+    setQuizQuestions([
+      {
+        id: '1',
+        question: '',
+        options: ['', '', '', ''],
+        correctAnswer: 0,
+      },
+    ]);
+    setSelectedFile(null);
+    setUploadProgress(0);
+  } catch (error: any) {
+    // Handle errors
+    let errorMessage = 'Upload failed. Please try again.';
+    if (axios.isAxiosError(error) && error.response) {
+      errorMessage = error.response.data?.message || errorMessage;
     }
-  };
+    setSnackbar({
+      open: true,
+      message: errorMessage,
+      severity: 'error',
+    });
+  } finally {
+    setLoading(false);
+  }
+};
+
 
 
   const handleCloseSnackbar = () => {
