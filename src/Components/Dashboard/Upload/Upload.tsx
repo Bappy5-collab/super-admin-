@@ -17,7 +17,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
+import axios from 'axios';
 interface QuizQuestion {
   id: string;
   question: string;
@@ -60,8 +60,8 @@ const Upload: React.FC = () => {
           ? field === 'question'
             ? { ...q, question: value as string }
             : field === 'correctAnswer'
-            ? { ...q, correctAnswer: value as number }
-            : { ...q, [field]: value }
+              ? { ...q, correctAnswer: value as number }
+              : { ...q, [field]: value }
           : q
       )
     );
@@ -72,9 +72,9 @@ const Upload: React.FC = () => {
       prev.map((q) =>
         q.id === questionId
           ? {
-              ...q,
-              options: q.options.map((opt, idx) => (idx === optionIndex ? value : opt)),
-            }
+            ...q,
+            options: q.options.map((opt, idx) => (idx === optionIndex ? value : opt)),
+          }
           : q
       )
     );
@@ -93,14 +93,12 @@ const Upload: React.FC = () => {
   const removeQuizQuestion = (id: string) => {
     setQuizQuestions((prev) => prev.filter((q) => q.id !== id));
   };
-
   const handleSubmit = async () => {
-    // Validation
     if (!formData.title.trim()) {
       setSnackbar({
         open: true,
-        message: 'Please enter a title',
-        severity: 'error',
+        message: "Please enter a title",
+        severity: "error",
       });
       return;
     }
@@ -109,101 +107,70 @@ const Upload: React.FC = () => {
     setUploadProgress(0);
 
     try {
-      // Create FormData to send data
+      // Prepare form data
       const uploadFormData = new FormData();
-      uploadFormData.append('title', formData.title);
-      uploadFormData.append('description', formData.description);
-      uploadFormData.append('date', formData.date);
-      
-      // Add quiz questions as JSON string
-      if (quizQuestions.length > 0 && quizQuestions.some(q => q.question.trim())) {
-        uploadFormData.append('quizQuestions', JSON.stringify(quizQuestions));
+      uploadFormData.append("title", formData.title);
+      uploadFormData.append("description", formData.description);
+      uploadFormData.append("date", formData.date);
+
+      if (
+        quizQuestions.length > 0 &&
+        quizQuestions.some((q) => q.question.trim())
+      ) {
+        uploadFormData.append("quizQuestions", JSON.stringify(quizQuestions));
       }
 
-      // Make API call with progress tracking
-      const xhr = new XMLHttpRequest();
+      console.log("📦 Upload Payload:", uploadFormData);
 
-      // Track upload progress
-      xhr.upload.addEventListener('progress', (e) => {
-        if (e.lengthComputable) {
-          const percentComplete = (e.loaded / e.total) * 100;
-          setUploadProgress(percentComplete);
+      // Axios POST request (same pattern as handlePublish)
+      const response = await axios.post(
+        "https://hire-gpt-backend.vercel.app/api/videos/upload",
+        uploadFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent) => {
+            if (progressEvent.total) {
+              const percent = Math.round(
+                (progressEvent.loaded * 100) / progressEvent.total
+              );
+              setUploadProgress(percent);
+            }
+          },
         }
-      });
+      );
 
-      // Handle response
-      xhr.addEventListener('load', () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          setSnackbar({
-            open: true,
-            message: 'Content uploaded successfully!',
-            severity: 'success',
-          });
-          
-          // Reset form
-          setFormData({
-            title: '',
-            description: '',
-            date: '',
-          });
-          setQuizQuestions([
-            {
-              id: '1',
-              question: '',
-              options: ['', '', '', ''],
-              correctAnswer: 0,
-            },
-          ]);
-          setUploadProgress(0);
-        } else {
-          let errorMessage = 'Upload failed. Please try again.';
-          try {
-            const response = JSON.parse(xhr.responseText);
-            errorMessage = response.message || errorMessage;
-          } catch (e) {
-            errorMessage = xhr.statusText || errorMessage;
-          }
-          setSnackbar({
-            open: true,
-            message: errorMessage,
-            severity: 'error',
-          });
-        }
-        setLoading(false);
-      });
+      console.log("✅ Upload successful:", response.data);
 
-      // Handle errors
-      xhr.addEventListener('error', () => {
-        setSnackbar({
-          open: true,
-          message: 'Network error. Please check your connection and try again.',
-          severity: 'error',
-        });
-        setLoading(false);
-        setUploadProgress(0);
-      });
-
-      // Handle abort
-      xhr.addEventListener('abort', () => {
-        setLoading(false);
-        setUploadProgress(0);
-      });
-
-      // Open and send request
-      xhr.open('POST', 'https://hire-gpt-backend.vercel.app/api/videos/upload');
-      xhr.send(uploadFormData);
-
-    } catch (error) {
-      console.error('Upload error:', error);
       setSnackbar({
         open: true,
-        message: 'An unexpected error occurred. Please try again.',
-        severity: 'error',
+        message: "Content uploaded successfully!",
+        severity: "success",
       });
-      setLoading(false);
+
+      // Reset form
+      setFormData({ title: "", description: "", date: "" });
+      setQuizQuestions([
+        { id: "1", question: "", options: ["", "", "", ""], correctAnswer: 0 },
+      ]);
       setUploadProgress(0);
+    } catch (error: any) {
+      console.error("❌ Upload error:", error);
+      const message =
+        error.response?.data?.message ||
+        "Upload failed. Please check your network or try again.";
+
+      setSnackbar({
+        open: true,
+        message,
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
     }
   };
+
 
   const handleCloseSnackbar = () => {
     setSnackbar({ ...snackbar, open: false });
@@ -213,10 +180,10 @@ const Upload: React.FC = () => {
     <Box sx={{ pb: 4 }}>
       <Box sx={{ maxWidth: "1200px", mx: "auto" }}>
         <Box sx={{ mb: 4 }}>
-          <Typography 
-            variant="h4" 
-            sx={{ 
-              fontWeight: 700, 
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 700,
               mb: 0.5,
               color: "text.primary",
               letterSpacing: "-0.5px"
@@ -381,7 +348,7 @@ const Upload: React.FC = () => {
                       <IconButton
                         size="small"
                         onClick={() => removeQuizQuestion(question.id)}
-                        sx={{ 
+                        sx={{
                           color: 'error.main',
                           '&:hover': {
                             bgcolor: 'rgba(239, 68, 68, 0.1)',
@@ -458,9 +425,9 @@ const Upload: React.FC = () => {
                       Uploading... {Math.round(uploadProgress)}%
                     </Typography>
                   </Box>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={uploadProgress} 
+                  <LinearProgress
+                    variant="determinate"
+                    value={uploadProgress}
                     sx={{
                       height: 8,
                       borderRadius: 4,
