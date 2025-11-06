@@ -1,42 +1,30 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
-
-import UserBreakdown from "./UserBreakdown";
-
-import FinancialAnalytics from "./FinancialAnalytics";
+import { Box, Grid, Typography } from "@mui/material";
 import StatsSection from "./StatusSection";
-
-import RecentReviews from "./RecentViews";
-import ProductManagement from "./ProductManagment";
-import RecentActivity from "./RecentActvity";
-import PerformanceInsights from "./PerformanceInsight";
-
+import RecentStudents from "./RecentStudents";
+import RecentCourses from "./RecentCourses";
+import EnrollmentChart from "./EnrollmentChart";
+import CourseProgress from "./CourseProgress";
 
 const DashboardPage: React.FC = () => {
   return (
-    <Box sx={{ p: 3, bgcolor: "#f8f9fb", minHeight: "100vh" }}>
-      {/* Stats */}
+    <Box sx={{ pb: 4 }}>
+      {/* Stats Cards */}
       <StatsSection />
 
       {/* Main Dashboard Content */}
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        <Grid size={{ xs: 4, md: 6 }}>
-          <PerformanceInsights />
+      <Grid container spacing={3} sx={{ mt: 2 }}>
+        <Grid size={{ xs: 12, md: 8 }}>
+          <EnrollmentChart />
         </Grid>
-        <Grid size={{ xs: 4, md: 6 }}>
-          <UserBreakdown />
+        <Grid size={{ xs: 12, md: 4 }}>
+          <CourseProgress />
         </Grid>
-        <Grid size={{ xs: 4, md: 6 }}>
-          <RecentReviews />
+        <Grid size={{ xs: 12, md: 6 }}>
+          <RecentStudents />
         </Grid>
-        <Grid size={{ xs: 4, md: 6 }}>
-          <FinancialAnalytics />
-        </Grid>
-        <Grid size={{ xs: 4, md: 6 }}>
-          <ProductManagement />
-        </Grid>
-        <Grid size={{ xs: 4, md: 6 }}>
-          <RecentActivity />
+        <Grid size={{ xs: 12, md: 6 }}>
+          <RecentCourses />
         </Grid>
       </Grid>
     </Box>
